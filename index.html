@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
   <div class="modal" tabindex="-1" id="save-succesful">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -30,10 +31,16 @@
       </div>
     </div>
   </div>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#save-succesful">
+    Launch static backdrop modal
+  </button>
+
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
-        <form>
+
+        <form class="mt-3 p-3 bg-secondary text-white border rounded">
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" class="form-control" name="name" value="victoria" id="name" aria-describedby="emailHelp">
@@ -50,6 +57,7 @@
             <label>Imagen</label>
             <input type="text" class="form-control" name="image" value="https://www.mexgrocer.com.de/media/image/f0/53/8b/Cerveza-Victoria-355-mlMqhwZjYHTxBh7.jpg" id="">
           </div>
+          <label>Categoria</label>
           <select class="form-control" id="category">
             <option>Ambar</option>
             <option>Obscura</option>
@@ -57,27 +65,25 @@
             <option>Lager</option>
             <option>0%Alcohol</option>
           </select>
-
-
-
-          <button type="submit" id="saveBeer" class="btn btn-primary">Submit</button>
+          <button type="submit" id="save-Beer" class="btn btn-light mt-3">Salvar</button>
         </form>
-        <table class="table">
+
+      </div>
+      <div class="col-12 col-md-6">
+        <table class="table mt-3 p-3 bg-secondary text-white rounded-lg">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">&nbsp;</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+          <tbody id="beer-table" >
+            
           </tbody>
         </table>
       </div>

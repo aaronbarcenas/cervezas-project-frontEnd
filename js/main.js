@@ -106,7 +106,7 @@ const printTable = dataToPrint => {
       let categoryText = document.createTextNode(category)
 
       let deleteButton = document.createElement("button")
-      deleteButton.classList = "btn btn-outline-danger delete-button mt-1"
+      deleteButton.classList = "btn btn-primary delete-button mt-1"
       deleteButton.dataset.beerKey = key
 
       let buttonText = document.createTextNode("Borrar")

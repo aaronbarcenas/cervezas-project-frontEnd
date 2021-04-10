@@ -4,14 +4,12 @@ const getBeerInfo = () => {
 
   fields.forEach(field => {
       beerObject[field.name] = field.value
-      console.log(beerObject)
   })
   let select = document.getElementById("category")
   let category = select.options[select.selectedIndex].value
 
-  console.log(category)
+
   beerObject = { ...beerObject, category }
-  console.log(beerObject)
 
   saveBeer(beerObject)
   fields.forEach(field => {
@@ -27,7 +25,7 @@ const saveBeer = beer => {
 
   xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-          console.log(xhttp.response)
+
           $('#save-succesful').modal('show')
           printTable(getBeersCollection())
       }
@@ -42,7 +40,7 @@ const getBeersCollection = () => {
 
   xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-          console.log(xhttp.response)
+
           beersCollection = JSON.parse(xhttp.response)
       }
   }
@@ -52,14 +50,14 @@ const getBeersCollection = () => {
 }
 
 const deleteBeer = event => {
-  console.log(event.target)
+
   let beerKey = event.target.dataset.beerKey
-  console.log(beerKey)
+
   let xhttp = new XMLHttpRequest();
 
   xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-          console.log(xhttp.response)
+
           printTable(getBeersCollection())
       }
   }
@@ -69,7 +67,7 @@ const deleteBeer = event => {
 
 
 const printTable = dataToPrint => {
-  console.log(dataToPrint)
+
   let table = document.getElementById("beer-table")
   let index = 1
 
@@ -78,10 +76,9 @@ const printTable = dataToPrint => {
       table.removeChild(table.lastElementChild);
   }
   for (key in dataToPrint) {
-      console.log(key)
-      console.log(dataToPrint[key])
 
-      let { name, description, price, image, category } = dataToPrint[key]
+
+      let { name, description, price, url, category } = dataToPrint[key]
 
       let beerRow = document.createElement("tr")
 
@@ -92,6 +89,9 @@ const printTable = dataToPrint => {
       let imageTd = document.createElement("td")
       let categoryTd = document.createElement("td")
       let buttonTd = document.createElement("td")
+      let image = document.createElement('IMG')
+      image.src = url
+      image.classList.add("img-fluid")
 
       // descriptionTd.classList = "text-truncate"
       // descriptionTd.style.maxWidth = "100px"
@@ -103,7 +103,6 @@ const printTable = dataToPrint => {
       let nameText = document.createTextNode(name)
       let descriptionText = document.createTextNode(description)
       let priceText = document.createTextNode(price)
-      let imageText = document.createTextNode(image)
       let categoryText = document.createTextNode(category)
 
       let deleteButton = document.createElement("button")
@@ -118,7 +117,7 @@ const printTable = dataToPrint => {
       nameTd.appendChild(nameText)
       descriptionTd.appendChild(descriptionText)
       priceTd.appendChild(priceText)
-      imageTd.appendChild(imageText)
+      imageTd.appendChild(image)
       categoryTd.appendChild(categoryText)
       buttonTd.appendChild(deleteButton)
 
@@ -132,7 +131,6 @@ const printTable = dataToPrint => {
 
       table.appendChild(beerRow)
       index++
-
   }
   /*agrupamos todos los botones*/
   let buttons = document.querySelectorAll(".delete-button")
@@ -144,4 +142,3 @@ const printTable = dataToPrint => {
 }
 
 printTable(getBeersCollection())
-
